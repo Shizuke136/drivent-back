@@ -22,6 +22,17 @@ async function insertTicket(ticket: Omit<Ticket, "id" | "createdAt" | "updatedAt
   });
 }
 
-const ticketRepository = { findManyTickets, findTicketByEnrrolmentId, insertTicket };
+async function findTicketsByTickedId(id: number) {
+  return prisma.ticket.findFirst({
+    where: {
+      id: id
+    }, include: {
+      TicketType: true,
+      Enrollment: true
+    }
+  });
+}
+
+const ticketRepository = { findManyTickets, findTicketByEnrrolmentId, insertTicket, findTicketsByTickedId };
 
 export default ticketRepository;
