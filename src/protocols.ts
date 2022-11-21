@@ -20,7 +20,7 @@ export type AddressEnrollment = {
   uf: string,
   error?: string
 
-}
+};
 
 export type RequestError = {
   status: number,
@@ -28,4 +28,24 @@ export type RequestError = {
   statusText: string,
   name: string,
   message: string,
+};
+
+export type TicketType = {
+  id: number,
+  name: string,
+  price: number,
+  isRemote: boolean,
+  includesHotel: boolean,
+  createdAt: Date,
+  updatedAt: Date,
+};
+
+export type Ticket = {
+  id: number,
+  name: string,
+  price: number,
+  isRemote: boolean,
+  includesHotel: boolean,
+  createdAt: Date,
+  updatedAt: Date,
 };
