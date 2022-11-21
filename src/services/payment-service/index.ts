@@ -17,7 +17,10 @@ async function findPaymentTicket(ticketId: number, userId: number) {
     throw unauthorizedError();
   }
 
-  return await paymentRepository.findOnePaymentByTicketId(ticketId);
+  const find = await paymentRepository.findOnePaymentByTicketId(ticketId);
+  console.log(find);
+
+  return find;
 }
 
 async function createPayment(data: PaymentData, userId: number) {

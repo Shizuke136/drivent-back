@@ -29,17 +29,16 @@ export async function postPayment(req: AuthenticatedRequest, res: Response) {
 
 export async function getPayment(req: AuthenticatedRequest, res: Response) {
   const ticketId = Number(req.query.ticketId);
-  const { userId } = req.body;
+  const { userId } = req;
 
   if(!ticketId) {
-    return res.status(httpStatus.BAD_REQUEST).send({});
+    return res.status(httpStatus.BAD_REQUEST).send();
   }
 
   try{
     const payment = await paymentServices.findPaymentTicket(ticketId, userId);
     return res.status(httpStatus.OK).send(payment);
   }catch(error) {
-    console.log(error);
     if (error.name === "NotFoundError") {
       return res.status(httpStatus.NOT_FOUND).send();
     } else if (error.name === "UnauthorizedError") {
