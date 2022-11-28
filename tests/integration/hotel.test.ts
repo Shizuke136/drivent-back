@@ -50,12 +50,12 @@ describe("GET /hotels", () => {
   });
 
   describe("when token is valid", () => {
-    it("should respond with status 404 if there is no enrollment", async () => {
+    it("should respond with status 401 if there is no enrollment", async () => {
       const token = await generateValidToken();
 
       const response = await server.get("/hotels").set("Authorization", `Bearer ${token}`);
 
-      expect(response.status).toEqual(httpStatus.NOT_FOUND);
+      expect(response.status).toEqual(httpStatus.UNAUTHORIZED);
     });
 
     it("should respond with status 403 when user doesnt have a ticket yet", async () => {
